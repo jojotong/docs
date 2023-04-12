@@ -1,0 +1,56 @@
+apiVersion: kubekey.kubesphere.io/v1alpha2
+kind: Manifest
+metadata:
+  name: sample
+spec:
+  arches:
+  - amd64
+  operatingSystems:
+  - arch: amd64
+    type: linux
+    id: centos
+    version: "7"
+    osImage: CentOS Linux 7 (Core)
+    repository:
+      iso:
+        localPath: 
+        url: https://github.com/kubesphere/kubekey/releases/download/v2.0.0/centos-7-amd64-rpms.iso
+  kubernetesDistributions:
+  - type: kubernetes
+    version: v1.26.3
+  components:
+    helm: 
+      version: v3.9.0
+    cni: 
+      version: v0.9.1
+    etcd: 
+      version: v3.4.13
+    containerRuntimes:
+    - type: containerd
+      version: 1.6.4
+    crictl: 
+      version: v1.24.0
+    ## 
+    # docker-registry:
+    #   version: "2"
+    # harbor:
+    #   version: v2.4.1
+    # docker-compose:
+    #   version: v2.2.2
+  images:
+  - docker.io/calico/cni:v3.23.2
+  - docker.io/calico/kube-controllers:v3.23.2
+  - docker.io/calico/node:v3.23.2
+  - docker.io/calico/pod2daemon-flexvol:v3.23.2
+  - docker.io/coredns/coredns:1.9.3
+  - docker.io/kubesphere/etcd:v3.4.13
+  - docker.io/kubesphere/k8s-dns-node-cache:1.15.12
+  - docker.io/kubesphere/kube-apiserver:v1.26.3
+  - docker.io/kubesphere/kube-controller-manager:v1.26.3
+  - docker.io/kubesphere/kube-proxy:v1.26.3
+  - docker.io/kubesphere/kube-scheduler:v1.26.3
+  - docker.io/kubesphere/pause:3.8
+  - docker.io/kubesphere/pause:3.9
+  - docker.io/library/haproxy:2.3
+  registry:
+    auths: {}

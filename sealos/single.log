@@ -1,0 +1,291 @@
+2023-04-11T10:41:41 info Start to create a new cluster: master [192.168.8.163], worker [], registry 192.168.8.163
+2023-04-11T10:41:41 info Executing pipeline Check in CreateProcessor.
+2023-04-11T10:41:41 info checker:hostname [192.168.8.163:22]
+2023-04-11T10:41:42 info checker:timeSync [192.168.8.163:22]
+2023-04-11T10:41:42 info Executing pipeline PreProcess in CreateProcessor.
+Resolving "labring/kubernetes" using unqualified-search registries (/etc/containers/registries.conf)
+Trying to pull docker.io/labring/kubernetes:v1.25.0...
+Getting image source signatures
+Copying blob 583917f417c4 done  
+Copying blob 88af23a6a8b4 done  
+Copying blob 4013845ba3fe done  
+Copying blob 0ad330619635 done  
+Copying config aa502e66bc done  
+Writing manifest to image destination
+Storing signatures
+Resolving "labring/helm" using unqualified-search registries (/etc/containers/registries.conf)
+Trying to pull docker.io/labring/helm:v3.8.2...
+Getting image source signatures
+Copying blob 53a6eade9e7e done  
+Copying config 1123e8b4b4 done  
+Writing manifest to image destination
+Storing signatures
+Resolving "labring/calico" using unqualified-search registries (/etc/containers/registries.conf)
+Trying to pull docker.io/labring/calico:v3.24.1...
+Getting image source signatures
+Copying blob d140ee807f6e done  
+Copying config 4d6318b2e3 done  
+Writing manifest to image destination
+Storing signatures
+2023-04-11T10:43:35 info Executing pipeline RunConfig in CreateProcessor.
+2023-04-11T10:43:35 info Executing pipeline MountRootfs in CreateProcessor.
+2023-04-11T10:44:39 info Executing pipeline MirrorRegistry in CreateProcessor.        
+2023-04-11T10:46:08 info Executing pipeline Bootstrap in CreateProcessor                  
+192.168.8.163:22: which: no docker in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin)
+192.168.8.163:22:  WARN [2023-04-11 10:46:26] >> Replace disable_apparmor = false to disable_apparmor = true 
+192.168.8.163:22:  INFO [2023-04-11 10:46:26] >> check root,port,cri success 
+192.168.8.163:22: Created symlink from /etc/systemd/system/multi-user.target.wants/containerd.service to /etc/systemd/system/containerd.service.
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> Health check containerd! 
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> containerd is running 
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> init containerd success 
+192.168.8.163:22: Created symlink from /etc/systemd/system/multi-user.target.wants/image-cri-shim.service to /etc/systemd/system/image-cri-shim.service.
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> Health check image-cri-shim! 
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> image-cri-shim is running 
+192.168.8.163:22:  INFO [2023-04-11 10:46:31] >> init shim success 
+192.168.8.163:22: 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
+192.168.8.163:22: ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.8.163:22: * Applying /usr/lib/sysctl.d/00-system.conf ...
+192.168.8.163:22: net.bridge.bridge-nf-call-ip6tables = 0
+192.168.8.163:22: net.bridge.bridge-nf-call-iptables = 0
+192.168.8.163:22: net.bridge.bridge-nf-call-arptables = 0
+192.168.8.163:22: * Applying /usr/lib/sysctl.d/10-default-yama-scope.conf ...
+192.168.8.163:22: kernel.yama.ptrace_scope = 0
+192.168.8.163:22: * Applying /usr/lib/sysctl.d/50-default.conf ...
+192.168.8.163:22: kernel.sysrq = 16
+192.168.8.163:22: kernel.core_uses_pid = 1
+192.168.8.163:22: kernel.kptr_restrict = 1
+192.168.8.163:22: net.ipv4.conf.default.rp_filter = 1
+192.168.8.163:22: net.ipv4.conf.all.rp_filter = 1
+192.168.8.163:22: net.ipv4.conf.default.accept_source_route = 0
+192.168.8.163:22: net.ipv4.conf.all.accept_source_route = 0
+192.168.8.163:22: net.ipv4.conf.default.promote_secondaries = 1
+192.168.8.163:22: net.ipv4.conf.all.promote_secondaries = 1
+192.168.8.163:22: fs.protected_hardlinks = 1
+192.168.8.163:22: fs.protected_symlinks = 1
+192.168.8.163:22: * Applying /etc/sysctl.d/99-sysctl.conf ...
+192.168.8.163:22: net.ipv4.conf.default.rp_filter = 1
+192.168.8.163:22: net.ipv4.ip_nonlocal_bind = 1
+192.168.8.163:22: net.ipv4.ip_forward = 1
+192.168.8.163:22: net.ipv4.conf.default.accept_source_route = 0
+192.168.8.163:22: kernel.sysrq = 0
+192.168.8.163:22: kernel.core_uses_pid = 1
+192.168.8.163:22: net.ipv4.tcp_syncookies = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-ip6tables = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-iptables = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-arptables = 1
+192.168.8.163:22: kernel.msgmnb = 65536
+192.168.8.163:22: kernel.msgmax = 65536
+192.168.8.163:22: kernel.shmmax = 68719476736
+192.168.8.163:22: kernel.shmall = 4294967296
+192.168.8.163:22: net.ipv4.tcp_mem = 786432 1048576 1572864
+192.168.8.163:22: net.ipv4.tcp_rmem = 4096        87380   4194304
+192.168.8.163:22: net.ipv4.tcp_wmem = 4096        16384   4194304
+192.168.8.163:22: net.ipv4.tcp_window_scaling = 1
+192.168.8.163:22: net.ipv4.tcp_sack = 1
+192.168.8.163:22: net.core.wmem_default = 8388608
+192.168.8.163:22: net.core.rmem_default = 8388608
+192.168.8.163:22: net.core.rmem_max = 16777216
+192.168.8.163:22: net.core.wmem_max = 16777216
+192.168.8.163:22: net.core.netdev_max_backlog = 262144
+192.168.8.163:22: net.core.somaxconn = 20480
+192.168.8.163:22: net.core.optmem_max = 81920
+192.168.8.163:22: net.ipv4.tcp_max_syn_backlog = 262144
+192.168.8.163:22: net.ipv4.tcp_syn_retries = 3
+192.168.8.163:22: net.ipv4.tcp_retries1 = 3
+192.168.8.163:22: net.ipv4.tcp_retries2 = 15
+192.168.8.163:22: net.ipv4.tcp_tw_reuse = 1
+192.168.8.163:22: net.ipv4.tcp_tw_recycle = 0
+192.168.8.163:22: net.ipv4.tcp_fin_timeout = 1
+192.168.8.163:22: net.ipv4.tcp_max_tw_buckets = 20000
+192.168.8.163:22: net.ipv4.tcp_max_orphans = 3276800
+192.168.8.163:22: net.ipv4.tcp_timestamps = 1 #?
+192.168.8.163:22: net.ipv4.tcp_synack_retries = 1
+192.168.8.163:22: net.ipv4.tcp_keepalive_time = 300
+192.168.8.163:22: net.ipv4.tcp_keepalive_intvl = 30
+192.168.8.163:22: net.ipv4.tcp_keepalive_probes = 3
+192.168.8.163:22: net.ipv4.ip_local_port_range = 10001    65000
+192.168.8.163:22: vm.overcommit_memory = 0
+192.168.8.163:22: vm.swappiness = 1
+192.168.8.163:22: vm.max_map_count = 262144
+192.168.8.163:22: net.ipv4.ip_local_reserved_ports = 30000-32767
+192.168.8.163:22: fs.inotify.max_user_instances = 524288
+192.168.8.163:22: kernel.pid_max = 65535
+192.168.8.163:22: * Applying /etc/sysctl.d/k8s.conf ...
+192.168.8.163:22: net.bridge.bridge-nf-call-ip6tables = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-iptables = 1
+192.168.8.163:22: net.ipv4.conf.all.rp_filter = 0
+192.168.8.163:22: * Applying /etc/sysctl.conf ...
+192.168.8.163:22: net.ipv4.conf.default.rp_filter = 1
+192.168.8.163:22: net.ipv4.ip_nonlocal_bind = 1
+192.168.8.163:22: net.ipv4.ip_forward = 1
+192.168.8.163:22: net.ipv4.conf.default.accept_source_route = 0
+192.168.8.163:22: kernel.sysrq = 0
+192.168.8.163:22: kernel.core_uses_pid = 1
+192.168.8.163:22: net.ipv4.tcp_syncookies = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-ip6tables = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-iptables = 1
+192.168.8.163:22: net.bridge.bridge-nf-call-arptables = 1
+192.168.8.163:22: kernel.msgmnb = 65536
+192.168.8.163:22: kernel.msgmax = 65536
+192.168.8.163:22: kernel.shmmax = 68719476736
+192.168.8.163:22: kernel.shmall = 4294967296
+192.168.8.163:22: net.ipv4.tcp_mem = 786432 1048576 1572864
+192.168.8.163:22: net.ipv4.tcp_rmem = 4096        87380   4194304
+192.168.8.163:22: net.ipv4.tcp_wmem = 4096        16384   4194304
+192.168.8.163:22: net.ipv4.tcp_window_scaling = 1
+192.168.8.163:22: net.ipv4.tcp_sack = 1
+192.168.8.163:22: net.core.wmem_default = 8388608
+192.168.8.163:22: net.core.rmem_default = 8388608
+192.168.8.163:22: net.core.rmem_max = 16777216
+192.168.8.163:22: net.core.wmem_max = 16777216
+192.168.8.163:22: net.core.netdev_max_backlog = 262144
+192.168.8.163:22: net.core.somaxconn = 20480
+192.168.8.163:22: net.core.optmem_max = 81920
+192.168.8.163:22: net.ipv4.tcp_max_syn_backlog = 262144
+192.168.8.163:22: net.ipv4.tcp_syn_retries = 3
+192.168.8.163:22: net.ipv4.tcp_retries1 = 3
+192.168.8.163:22: net.ipv4.tcp_retries2 = 15
+192.168.8.163:22: net.ipv4.tcp_tw_reuse = 1
+192.168.8.163:22: net.ipv4.tcp_tw_recycle = 0
+192.168.8.163:22: net.ipv4.tcp_fin_timeout = 1
+192.168.8.163:22: net.ipv4.tcp_max_tw_buckets = 20000
+192.168.8.163:22: net.ipv4.tcp_max_orphans = 3276800
+192.168.8.163:22: net.ipv4.tcp_timestamps = 1 #?
+192.168.8.163:22: net.ipv4.tcp_synack_retries = 1
+192.168.8.163:22: net.ipv4.tcp_keepalive_time = 300
+192.168.8.163:22: net.ipv4.tcp_keepalive_intvl = 30
+192.168.8.163:22: net.ipv4.tcp_keepalive_probes = 3
+192.168.8.163:22: net.ipv4.ip_local_port_range = 10001    65000
+192.168.8.163:22: vm.overcommit_memory = 0
+192.168.8.163:22: vm.swappiness = 1
+192.168.8.163:22: vm.max_map_count = 262144
+192.168.8.163:22: net.ipv4.ip_local_reserved_ports = 30000-32767
+192.168.8.163:22: fs.inotify.max_user_instances = 524288
+192.168.8.163:22: kernel.pid_max = 65535
+192.168.8.163:22: net.ipv4.ip_forward = 1
+192.168.8.163:22:  INFO [2023-04-11 10:46:32] >> init kubelet success 
+192.168.8.163:22:  INFO [2023-04-11 10:46:32] >> init rootfs success 
+192.168.8.163:22: Created symlink from /etc/systemd/system/multi-user.target.wants/registry.service to /etc/systemd/system/registry.service.
+192.168.8.163:22:  INFO [2023-04-11 10:46:34] >> Health check registry! 
+192.168.8.163:22:  INFO [2023-04-11 10:46:34] >> registry is running 
+192.168.8.163:22:  INFO [2023-04-11 10:46:34] >> init registry success 
+2023-04-11T10:46:31 info Executing pipeline Init in CreateProcessor.
+2023-04-11T10:46:31 info start to copy kubeadm config to master0
+2023-04-11T10:46:32 info start to generate cert and kubeConfig...1, 5 it/s)
+2023-04-11T10:46:32 info start to generator cert and copy to masters...
+2023-04-11T10:46:32 info apiserver altNames : {map[apiserver.cluster.local:apiserver.cluster.local kubernetes:kubernetes kubernetes.default:kubernetes.default kubernetes.default.svc:kubernetes.default.svc kubernetes.default.svc.cluster.local:kubernetes.default.svc.cluster.local localhost:localhost node1:node1] map[10.103.97.2:10.103.97.2 10.96.0.1:10.96.0.1 127.0.0.1:127.0.0.1 192.168.8.163:192.168.8.163]}
+2023-04-11T10:46:32 info Etcd altnames : {map[localhost:localhost node1:node1] map[127.0.0.1:127.0.0.1 192.168.8.163:192.168.8.163 ::1:::1]}, commonName : node1
+2023-04-11T10:46:34 info start to copy etc pki files to masters
+2023-04-11T10:46:39 info start to copy etc pki files to masters                      
+[1/1]copying files to 192.168.8.163:22 100% [===============] (0/22, 0 it/min)2023-04-11T10:46:43 info start to create kubeconfig...
+2023-04-11T10:46:45 info start to copy kubeconfig files to masters
+2023-04-11T10:46:46 info start to copy static files to masters1, 5 it/s)
+2023-04-11T10:46:47 info start to init master0...
+2023-04-11T10:46:47 info registry auth in node 192.168.8.163:22
+192.168.8.163:22: 2023-04-11T10:46:52 info domain sealos.hub:192.168.8.163 append success
+192.168.8.163:22: 2023-04-11T10:46:52 info domain apiserver.cluster.local:192.168.8.163 append success
+192.168.8.163:22: W0411 10:46:53.118150     755 initconfiguration.go:119] Usage of CRI endpoints without URL scheme is deprecated and can cause kubelet errors in the future. Automatically prepending scheme "unix" to the "criSocket" with value "/run/containerd/containerd.sock". Please update your configuration!
+192.168.8.163:22: W0411 10:46:53.118421     755 utils.go:69] The recommended value for "healthzBindAddress" in "KubeletConfiguration" is: 127.0.0.1; the provided value is: 0.0.0.0
+192.168.8.163:22: [init] Using Kubernetes version: v1.25.0
+192.168.8.163:22: [preflight] Running pre-flight checks
+192.168.8.163:22: [preflight] Pulling images required for setting up a Kubernetes cluster
+192.168.8.163:22: [preflight] This might take a minute or two, depending on the speed of your internet connection
+192.168.8.163:22: [preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+192.168.8.163:22: [certs] Using certificateDir folder "/etc/kubernetes/pki"
+192.168.8.163:22: [certs] Using existing ca certificate authority
+192.168.8.163:22: [certs] Using existing apiserver certificate and key on disk
+192.168.8.163:22: [certs] Using existing apiserver-kubelet-client certificate and key on disk
+192.168.8.163:22: [certs] Using existing front-proxy-ca certificate authority
+192.168.8.163:22: [certs] Using existing front-proxy-client certificate and key on disk
+192.168.8.163:22: [certs] Using existing etcd/ca certificate authority
+192.168.8.163:22: [certs] Using existing etcd/server certificate and key on disk
+192.168.8.163:22: [certs] Using existing etcd/peer certificate and key on disk
+192.168.8.163:22: [certs] Using existing etcd/healthcheck-client certificate and key on disk
+192.168.8.163:22: [certs] Using existing apiserver-etcd-client certificate and key on disk
+192.168.8.163:22: [certs] Using the existing "sa" key
+192.168.8.163:22: [kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+192.168.8.163:22: [kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/admin.conf"
+192.168.8.163:22: [kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/kubelet.conf"
+192.168.8.163:22: W0411 10:47:37.888800     755 kubeconfig.go:249] a kubeconfig file "/etc/kubernetes/controller-manager.conf" exists already but has an unexpected API Server URL: expected: https://192.168.8.163:6443, got: https://apiserver.cluster.local:6443
+192.168.8.163:22: [kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/controller-manager.conf"
+192.168.8.163:22: W0411 10:47:38.444615     755 kubeconfig.go:249] a kubeconfig file "/etc/kubernetes/scheduler.conf" exists already but has an unexpected API Server URL: expected: https://192.168.8.163:6443, got: https://apiserver.cluster.local:6443
+192.168.8.163:22: [kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/scheduler.conf"
+192.168.8.163:22: [kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+192.168.8.163:22: [kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+192.168.8.163:22: [kubelet-start] Starting the kubelet
+192.168.8.163:22: [control-plane] Using manifest folder "/etc/kubernetes/manifests"
+192.168.8.163:22: [control-plane] Creating static Pod manifest for "kube-apiserver"
+192.168.8.163:22: [control-plane] Creating static Pod manifest for "kube-controller-manager"
+192.168.8.163:22: [control-plane] Creating static Pod manifest for "kube-scheduler"
+192.168.8.163:22: [etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+192.168.8.163:22: [wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+192.168.8.163:22: [apiclient] All control plane components are healthy after 11.006057 seconds
+192.168.8.163:22: [upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+192.168.8.163:22: [kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+192.168.8.163:22: [upload-certs] Skipping phase. Please see --upload-certs
+192.168.8.163:22: [mark-control-plane] Marking the node node1 as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+192.168.8.163:22: [mark-control-plane] Marking the node node1 as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+192.168.8.163:22: [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+192.168.8.163:22: [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+192.168.8.163:22: [bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+192.168.8.163:22: [bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+192.168.8.163:22: [bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+192.168.8.163:22: [bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+192.168.8.163:22: [kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+192.168.8.163:22: [addons] Applied essential addon: CoreDNS
+192.168.8.163:22: [addons] Applied essential addon: kube-proxy
+192.168.8.163:22: 
+192.168.8.163:22: Your Kubernetes control-plane has initialized successfully!
+192.168.8.163:22: 
+192.168.8.163:22: To start using your cluster, you need to run the following as a regular user:
+192.168.8.163:22: 
+192.168.8.163:22:   mkdir -p $HOME/.kube
+192.168.8.163:22:   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+192.168.8.163:22:   sudo chown $(id -u):$(id -g) $HOME/.kube/config
+192.168.8.163:22: 
+192.168.8.163:22: Alternatively, if you are the root user, you can run:
+192.168.8.163:22: 
+192.168.8.163:22:   export KUBECONFIG=/etc/kubernetes/admin.conf
+192.168.8.163:22: 
+192.168.8.163:22: You should now deploy a pod network to the cluster.
+192.168.8.163:22: Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+192.168.8.163:22:   https://kubernetes.io/docs/concepts/cluster-administration/addons/
+192.168.8.163:22: 
+192.168.8.163:22: You can now join any number of control-plane nodes by copying certificate authorities
+192.168.8.163:22: and service account keys on each node and then running the following as root:
+192.168.8.163:22: 
+192.168.8.163:22:   kubeadm join apiserver.cluster.local:6443 --token <value withheld> \
+192.168.8.163:22:       --discovery-token-ca-cert-hash sha256:8fcad02b2970c653606b2fb058b62c97e82dd3fa33d9fca2d860817e2db1e440 \
+192.168.8.163:22:       --control-plane --certificate-key <value withheld>
+192.168.8.163:22: 
+192.168.8.163:22: Then you can join any number of worker nodes by running the following on each as root:
+192.168.8.163:22: 
+192.168.8.163:22: kubeadm join apiserver.cluster.local:6443 --token <value withheld> \
+192.168.8.163:22:       --discovery-token-ca-cert-hash sha256:8fcad02b2970c653606b2fb058b62c97e82dd3fa33d9fca2d860817e2db1e440 
+2023-04-11T10:47:47 info Executing pipeline Join in CreateProcessor.
+2023-04-11T10:47:47 info start to get kubernetes token...
+2023-04-11T10:47:49 info Executing pipeline RunGuest in CreateProcessor.
+192.168.8.163:22: Release "calico" does not exist. Installing it now.
+192.168.8.163:22: NAME: calico
+192.168.8.163:22: LAST DEPLOYED: Tue Apr 11 10:47:58 2023
+192.168.8.163:22: NAMESPACE: tigera-operator
+192.168.8.163:22: STATUS: deployed
+192.168.8.163:22: REVISION: 1
+192.168.8.163:22: TEST SUITE: None
+2023-04-11T10:47:58 info succeeded in creating a new cluster, enjoy it!
+2023-04-11T10:47:58 info 
+      ___           ___           ___           ___       ___           ___
+     /\  \         /\  \         /\  \         /\__\     /\  \         /\  \
+    /::\  \       /::\  \       /::\  \       /:/  /    /::\  \       /::\  \
+   /:/\ \  \     /:/\:\  \     /:/\:\  \     /:/  /    /:/\:\  \     /:/\ \  \
+  _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \   /:/  /    /:/  \:\  \   _\:\~\ \  \
+ /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\
+ \:\ \:\ \/__/ \:\~\:\ \/__/ \/__\:\/:/  / \:\  \    \:\  \ /:/  / \:\ \:\ \/__/
+  \:\ \:\__\    \:\ \:\__\        \::/  /   \:\  \    \:\  /:/  /   \:\ \:\__\
+   \:\/:/  /     \:\ \/__/        /:/  /     \:\  \    \:\/:/  /     \:\/:/  /
+    \::/  /       \:\__\         /:/  /       \:\__\    \::/  /       \::/  /
+     \/__/         \/__/         \/__/         \/__/     \/__/         \/__/
+
+                  Website :https://www.sealos.io/
+                  Address :github.com/labring/sealos
+                BuildVersion: 4.1.4-bf121904
