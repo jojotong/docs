@@ -1,7 +1,7 @@
 # k8s 安装调研
 在初始化的linux服务器上安装k8s
 
-| \            | kubekey    | kubespray         | kubeadm | kops | minikube | sealos     | sealer     | kind | kubeoperator | rke | kubeasz | kainstall     |
+| 特性-工具    | kubekey    | kubespray         | kubeadm | kops | minikube | sealos     | sealer     | kind | kubeoperator | rke | kubeasz | kainstall     |
 | ------------ | ---------- | ----------------- | ------- | ---- | -------- | ---------- | ---------- | ---- | ------------ | --- | ------- | ------------- |
 | k8s官方      | X          | √                 | √       | √    | √        | x          | x          | x    | x            | x   | x       | x             |
 | 高可用       | √          | √                 | √       | √    | x        | √          | √          | x    |              |     |         |               |
@@ -29,6 +29,7 @@
 ## kubekey
 
 项目地址: <https://github.com/kubesphere/kubekey>
+
 实践文档: [kubekey安装实践](kubekey/kubekey.md)
 
 缺点：
@@ -39,6 +40,8 @@
 ## sealos
 
 项目地址：<https://github.com/labring/sealos>
+
+实践文档: [sealos安装实践](sealos/sealos.md)
 
 缺点:
 1. 不是专门做k8s安装的
@@ -57,6 +60,7 @@
 ## kubespray
 
 项目地址: <https://github.com/kubernetes-sigs/kubespray>
+
 实践文档: [kubespray安装实践](kubespray/kubespray.md)
 
 
