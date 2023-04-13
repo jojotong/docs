@@ -24,3 +24,16 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 ```
 
+## 离线安装
+根据文档 <https://github.com/kubernetes-sigs/kubespray/blob/master/docs/offline-environment.md> 
+
+需要配合一些脚本工具:
+- `manage-offline-container-images.sh`: Container image collecting script for offline deployment
+- `generate_list.sh`: Generates the list of downloaded files and the list of container images by `roles/download/defaults/main.yml` file
+- `manage-offline-files.sh`: This script will download all files according to `temp/files.list` and run nginx container to provide offline file download.
+
+简单来说，就是做以下工作：
+- 搭建registry镜像服务
+- 搭建文件服务器
+- 根据Inventory配置下载所需要镜像及文件
+
