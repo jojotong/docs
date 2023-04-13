@@ -1,30 +1,31 @@
 # k8s 安装调研
 在初始化的linux服务器上安装k8s
 
-| 特性-工具    | kubekey    | kubespray         | kubeadm | kops | minikube | sealos            | sealer            | kind | kubeoperator | rancher/rke   | kubeasz | kainstall     |
-| ------------ | ---------- | ----------------- | ------- | ---- | -------- | ----------------- | ----------------- | ---- | ------------ | ------------- | ------- | ------------- |
-| k8s官方      | X          | √                 | √       | √    | √        | x                 | x                 | x    | x            | x             | x       | x             |
-| 高可用       | √          | √                 | √       | √    | x        | √                 | √                 | x    |              | √             |         |               |
-| os初始化     | √          | √                 | x       |      |          | √(?)              | √(?)              |      |              | x(依赖docker) |         | √             |
-| 开发语言     | go         | ansible           | go      |      |          | go                | go                |      |              | go            |         | shell         |
-| 原理         | go+kubeadm | ansible+kubeadm   | go      |      |          | go+kubeadm        | go+kubeadm        |      |              | go            |         | shell+kubeadm |
-| 离线安装     | √          | √（需搭建私有库） | √(部分) |      |          | √                 | √                 |      |              | x             |         |               |
-| 社区活跃度   | 一般       | 高                | 高      |      |          | 高                | 一般              |      |              | 一般          |         |               |
-| 可扩展性     | 高         | 高                | 低      |      |          | 高                | 高                |      |              | 高            |         |               |
-| 附加组件支持 | √ (helm)   | √                 | x       |      |          | √ (cluster image) | √ (cluster image) |      |              | √（yaml）     |         |               |
-| 安装时间     | 快         | 慢                | 快      |      |          | 快                | 快                |      |              | 快            |         |               |
-| k8s版本      | 同kubeadm  | 同kubeadm         | v1.26   |      |          | v1.25             | v1.22             |      |              | v1.25.6       |         |               |
-| 打分(满分10) | 9          | 8                 | 5       |      |          | 8                 | 7                 |      |              | 8             |         |               |
+| 特性-工具    | kubekey    | kubespray         | kubeadm | sealos            | sealer            | kubeoperator | rancher/rke   | kind       | kubeasz   | kainstall     | kos | minikube |
+| ------------ | ---------- | ----------------- | ------- | ----------------- | ----------------- | ------------ | ------------- | ---------- | --------- | ------------- | --- | -------- |
+| k8s官方      | X          | √                 | √       | x                 | x                 | x            | x             | √          | x         | x             | √   | √        |
+| 高可用       | √          | √                 | √       | √                 | √                 | √            | √             | √(?)       | √         | √             | √   | x        |
+| os初始化     | √          | √                 | x       | √(?)              | √(?)              | √            | x(依赖docker) | √          | √         | √             | -   | -        |
+| 开发语言     | go         | ansible           | go      | go                | go                | go+ansible   | go            | go         | ansible   | shell         | go  | go       |
+| 原理         | go+kubeadm | ansible+kubeadm   | go      | go+kubeadm        | go+kubeadm        | go+ansible   | go            | go+kubeadm | 纯ansible | shell+kubeadm | -   | -        |
+| 离线安装     | √          | √（需搭建私有库） | √(部分) | √                 | √                 | √(不全)      | x             | √          | √         | √             | -   | -        |
+| 二开复杂度   | 较简单     | 一般              | 复杂    | 一般              | 一般              | 复杂         | 较复杂        | -          | 一般      | 复杂          | -   | -        |
+| 社区活跃度   | 一般       | 高                | 高      | 高                | 一般              | 低           | 一般          | 高         | 高        | 低            | -   | -        |
+| 扩/缩容      | √          | √                 | √       | √                 | √                 | √            | √             | x          | √         | √             | √   | x        |
+| 附加组件支持 | √ (helm)   | √                 | x       | √ (cluster image) | √ (cluster image) | ×            | √（yaml）     | x          | √         | √             | -   | -        |
+| 安装时间     | 快         | 慢                | 快      | 快                | 快                | 慢           | 快            | 快         | 慢        | 快            | -   | -        |
+| k8s版本      | 同kubeadm  | 同kubeadm         | v1.27   | v1.25             | v1.22             | v1.22        | v1.25         | 同kubeadm  | v1.26     | v1.27         | -   | -        |
+| 打分(满分10) | 9          | 8                 | 6       | 8                 | 7                 | 6            | 8             | -          | 7         | 5             | -   | -        |
 
 注：打分评判标准并不是这些开源软件的优秀成都，而是综合优秀程度+我们的需求匹配度，我们比较关注以下几点:
 - 高可用
+- 扩/缩容
 - 离线安装
 - 依赖环境的复杂度
 - 支持多种os
 - 支持多种CPU架构
 - 支持多种容器运行时
 - 二次开发的难度
-- 可扩展性
 
 ## kubekey
 
@@ -72,26 +73,41 @@
 ## rancher/rke
 由于rancher部署自定义k8s集群时，实际上使用的是rke，所以我们这里只讨论rke工具。
 
-**rke不使用kubeadm配管集群**
-
 项目地址: <https://github.com/rancher/rke>
+
 实践文档：[rke安装实践](rke/rke.md)
+
+缺点:
+1. rke不使用kubeadm配管集群
+2. 部分os无法使用root用户
+3. 节点必须有docker环境
+4. 离线安装支持性不佳
+5. addon插件通过原生yaml而不是helm方式支持
+
+## kubeOperator
+
+项目地址: <https://github.com/KubeOperator/KubeOperator>
+安装文档 [kubeoperator安装实践](kubeoperator/kubeoperator.md)
+
+缺点:
+1. 只能通过kubeoperator界面安装，而kubeoperator需要通过docker安装，其无法离线安装docker
+2. 安装k8s这块用的自建[ansible脚本](https://github.com/KubeOperator/ansible)，而不是基于kubeadm
+3. 安装脚本不够智能，依赖多
+
+**不过，我们可以借鉴它的架构来做多集群管理。**
+
+注:
+- 1. kubekey文档中只支持到v1.25，但经过实测，如果不胡乱修改配置如`kubernetes.featureGates`，是可以与kubeadm保持一致的，例如`v1.25`中，移除了`TTLAfterFinished`，此时配置便会报错
 
 
 ## kops    
 己内部实现的自动化配置和编排功能，与其支持的特定的云平台的独有特性紧密关联(如AWS)，所以在其他一些通用的平台上不太灵活。
-如果在可预见的未来我们只使用一个平台，那么它可能是一个更好的选择。
-
 
 ## kubeadm
 提供了k8s集群生命周期管理的领域知识，包括自托管、动态服务发现等，说白话就是，kubeadm提供了官方对k8s集群部署、配置、管理的最佳实践
 
 ## kind
+k8s in docker，不能用于生产，但可做轻量化便捷部署、演示。
 
 ## minikube
-
-## kubeOperator
-
-
-注:
-- 1. kubekey文档中只支持到v1.25，但经过实测，如果不胡乱修改配置如`kubernetes.featureGates`，是可以与kubeadm保持一致的，例如`v1.25`中，移除了`TTLAfterFinished`，此时配置便会报错
+在本地创建VM然后部署k8s，不能用于生产。

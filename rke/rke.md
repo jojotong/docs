@@ -8,7 +8,7 @@ curl -fL https://192.168.8.162/system-agent-install.sh | sudo  sh -s - --server 
 
 # rke安装实践
 
-## 安装
+## 在线安装
 rke不能自动初始化os，因此一些必要的初始化操作及docker安装都需手动执行             
 
 ```barh
@@ -38,7 +38,27 @@ $ rke config --name cluster.yaml
 [+] Cluster Network CIDR [10.42.0.0/16]: 
 [+] Cluster DNS Service IP [10.43.0.10]: 
 [+] Add addon manifest URLs or YAML files [no]: 
+# 视情况修改cluster.yaml文件
+$ rke up --config cluster.yaml
 ```
+
+## 离线安装
+rke虽然不支持离线安装，但由于它的所有工具的安装包括os配置修改都通过docker镜像实现，如：
+- rancher/rke-tools: 提供一系列工具来初始化os及安装必要的软件包
+- rancher/hyperkube: k8s镜像
+
+如果我们要做离线安装，为rke制作的离线包需要包括以下内容
+1. docker离线安装包及工具
+2. 镜像分发工具或者registry仓库搭建
+3. 如果有自定义的步骤，可能需要修改`rke-tool`镜像
+4. 其他的同在线安装
+
+## 卸载
+```bash
+rke remove --config cluster.yaml
+```
+但是卸载得不够彻底，像`nginx-ingress-controller`，`metrics-server`等容器还在。
+
 
 ## 实测问题
 1. 没有安装docker，以及centos 不能使用root用户ssh
@@ -102,10 +122,6 @@ WARN[0000] Failed to set up SSH tunneling for host [192.168.8.163]: Can't retrie
     "group": "dockerroot"
 }
 ```
-
-
-
-- 
 
 参考文档: 
 - <https://rke.docs.rancher.com/os#red-hat-enterprise-linux-rhel--oracle-linux-ol--centos>
