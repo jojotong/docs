@@ -1,0 +1,30 @@
+@startmindmap design
+*[#GreenYellow] 基于 kubekey 的\nk8s 安装方案
+
+**[#LightBlue] 第一步：直接使用 Kubekey 项目，\n初步实现用于金证的 k8s 集群安装 
+***[#SkyBlue] 搭建文件服务器，\n托管 k8s 依赖的软件包
+****_ ubuntu-20.04-amd64-debs.iso
+****_ centos-7-amd64-rpms.iso
+****_ 其他...
+***[#SkyBlue] 搭建镜像仓库，\n托管 k8s 依赖的镜像
+****_ calico/cni:v3.23.2
+****_ kube-apiserver:v1.26.3
+****_ 其他...
+***[#SkyBlue] 制作离线安装包
+****_ kubekey-centos7-amd64-artifact.tar.gz 
+****_ kubekey-ubuntu-arm64-artifact.tar.gz 
+****_ 其他...
+
+**[#LightYellow] 第二步：kubekey优化
+***[#Yellow] 实际部署中，发现\n并修复其中bug
+***[#Yellow] 优化部署流程
+****_ 部分命令从配置文件读取
+****_ 文件下载地址从配置文件读取
+****_ 加入我们自己需要的额外部署的项目，如koca平台
+
+**[#Orange] 第三步：可视化管理 k8s 集群
+***[#Pink] 开发 server，以 http\n接口形式管理集群
+****_ 方案1：直接在 kubekey 代码库添加 serve command 与前端界面
+****_ 方案2：开发独立的前后端服务，调用 kubekey 命令
+@endmindmap
+
