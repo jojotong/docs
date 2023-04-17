@@ -1,0 +1,37 @@
+@startuml inkubekey
+actor user
+card 云原生管理平台 #LightYellow {
+    [dashboard] #LightGreen
+    [cmp_kce] #YellowGreen
+    component KubekeyServer #LightGoldenRodYellow {
+        [kubekey_server] #LightSkyBlue
+        artifact kubekey
+    }
+    database mysql #Pink
+}
+
+cloud Kubernetes集群 #LightBlue {
+    node 节点
+    [apiserver]
+    [其他k8s组件]
+    [集群插件]
+}
+
+apiserver -[hidden]right-> 其他k8s组件
+节点 -[hidden]down=> 集群插件
+
+apiserver -[hidden]right->节点
+其他k8s组件 -[hidden]right-> 集群插件
+
+user -down-> dashboard: k8s集群管理(增删查改)
+dashboard -down-> cmp_kce: 调用集群管理HTTP API
+cmp_kce -right-> kubekey_server: 调用kubekey集群管理GRPC API
+kubekey_server -> cmp_kce: 实时传输日志
+cmp_kce -left-> mysql: 存储集群信息
+kubekey_server -right-> kubekey: 调用kubekey的库/命令
+
+cmp_kce -down-> 节点: 管理节点信息(SSH)
+kubekey -down-> 节点: k8s集群创建\n节点扩缩容\n集群升级\n集群删除
+
+cmp_kce -down-> apiserver: k8s apiserver\n请求代理
+@enduml

@@ -140,11 +140,35 @@ k8s in docker，不能用于生产，但可做轻量化便捷部署、演示。
 ## 基于kubekey的k8s安装方案
 根据我们上面的调研结果，`kubekey`应该是目前最合适的工具，因此我们在这里讨论基于`kubekey`做二次开发的方案。
 
-可以视需求情况分三步走:
+可以视需求情况分三步走，如下图:
 
-![](https://www.plantuml.com/plantuml/png/XLHTJnfR57tdLvpalfamLz5uRtmoz-K-t9kqIP-QQfe1fZW11WA3ZNt2MX3a0ubA_81M52of2FH318RHFtFsd9ad_qAtda6qgItXXJdhhBNschMPZwfYH0tAYZSeXebNYie-nJ7nuez_8vAaF9S2WT3hHG8V1dIG9_wOM_9BAuJjlrjG_7z72RJIvd72AFMDQihXcC1h_yk-9VMVG4nQ9ApPfBsuSLQ_7kwpWsz6laxrAxRT8F_PD5QrpmvQryFiWWAf2WAXzPxbEmX1CMkzQBPNKOdS25a7INPPut84XL3fcN-5wnYRPw0DZD8wrRf6EGSRLTXhtB8QwLtMgjuIqCkAULv2EbDl8mwo2SS4VbwIc3kcg36dQrAOd76AGU_iZDChkQE270tP28-agA6eyo_xD18EtZ-5H9Tg9K4GVkhAsYd3Me5gMp3OUjGI1utKn83i2VtfKUIvvMd1XL_xu2PyfnYMer9aMOhCBKy9hbbX-ZSk8DMbUfcTQ6nmnTCRJsw_JIUVRpGUba5-9NfK0MiX-DwG7y0yBaG57yUEpOmhmPl4Ip78ybBOd7Iu2zaIDpw2OHEilOIrrc3w5zexm-YWKCHkO5FwNNhLWbeELV347VCzlCdP-4tZV9KrChOhV0If91HrgjMebhSIEQQtU6lCjWQ5aetZZsWlO-ewb3jGYVyA3Hk7aAWRgIBLckRw9xZuR9NZvibDSQsZ2jHi9_ZphkrmyjOVyeZG_mg53e_eIKHKVAELIVDqeD0sFoPn5kmBsqpUMmC-y5DPyMDGmpWcGtWfa9ngTRAagc5iMhuEXMFGZs1Ou1JsRMwSB-tKtMv2kN6ttrGxPeUhM5dZGiC1EJlnX891KV4Isij3EiTEssmdQrME7l2va8zROfacEytWt8Y5pJp2-MwYHxEpnhR7QloLEEObnMl_3Nq7)
+![](https://www.plantuml.com/plantuml/png/XLHDJp9N6DtpAoRfpeIfeh6DAzCkNBH9JRjggca6cE8460WCDdQ5jI08311ReWArA2Yf2FH318QHFtEVkJCh_yBx37U87tbztyIDSyzppddEFPVrk2B4bB0a-yD2bFEBSIaWknP--6GZ9ehozs8e5FbvcuFpCHchN33X5OFY7aVFVjkIWv_7EUXcpSkKKHaPZOpBjO1ZNqk17UMBK4BSvcYdGuP9uxRrE3cZrVyDjKNqAVszpNtbq5YD4Qrs7oVvBHaoTGH2zq-gzX62OjPXsUpjen9d2rdLD7reCZaEXL3fk-0Uqp5Ajw2DZSeXqGP6hG173JXjprYDx0djDcO4vA5ktbMGpjHxY8DyocPP-95BU1Eoad1x5ld55RSGzg-kkFsYDyvByOY3y8co4ecxFtDEOz7myrD83OXMuNd-lQwiFsfmK2JQCOoFtxJ4G7Cr8IJv8f_wP6bjTvdtu1yxc8Nl5g9IN8pjYh6rtINUiyelVyG5P0P4hz4hZOwdBBsdpPtRTBFzvkjX6QIV19_2Ootum2_SAp2B2r7Xjx5FPfugmPh4IZ7Eir8ud6Ho0laACpw7OHEiqvHrqARwlsHuYz51iOpTmAQC1cJQXMO1LV34cmYyd6HiRDAuswVjdECAFq4c3MMTQ4sYgLQgGFKkQutPqw1OSN3i4ndcJ5s7MX_goG-XuUWlIBMCJ9be7VFmRxZ_nwebpIkxkDP57PgE4_lVUTlXwjTWn2V0w3yezbb4tyG4EJ1_CbcM3bRUo9JCQHNvRVmiWvvvdSRri4Aqb7xsCbW6cv8SnEmcIGoBOpt1AQArk1r5YMBvr1OKBq6_W4cHKJZJR1VsZfTGsxwYJeCHERTaozVQe9x3TOw5YEaRzne6mAGuNoGS5cG_ocGgPZB5fcckGszokFx6jvjVijTfzW_mYJkqZCfsELJjBTdMBmnvqD0hCiWMeAJIcnvZn756Eg-fQrsK_SvlsZi0)
 
 
+最终完成时的架构如下图:
+![](https://www.plantuml.com/plantuml/png/VP9FJnD16CRlyoacuG87ujKqaQ0UmEYXeLmC4BBT6UncTsVg_f4qXeCLiPee8erLIMXHY7AmO4ngsaNuCZixvLiutPdTRJV67fgyypxlxtbcvvrtFStnVDi2ckvH1_ekTe2kEGY6WptsjisRRTuzukzsMFyNsps7Km-CHnNl8ROikWcV0YX-AqXpAsKgPjPKUy71cCYURbVNJHsBZfp9MZgrgvHWui7xVXcRk5R2pXFi90Xg8KoMA9gmYf6cbA-xiJxnB9crEvQFKvcubR4XxWILF6vinVz8yxIovc9erzp75fmg6iG4Mm3e5lLHdCOXsCFkzS4ElpnM_15SfI0KOJXyNUVrlhoaLZLK65cp5xqm-63UT7cm7GOzTIfnqUxx-4ZufMDmTgLY88J9cZEocfs3EGAGRfaEqKroQmwE8__7Ks5prBmip_FT4Mfa9Lhf8nUW04YXt8nfzkMGDJfH-oHgzcT0Aan7rGuKuF3yEMz-7vzTN5ukmjl5Uq1fu6mIPVALarbrEevOM2hUZH6J4t3Sc7KFerOllEWCB_UZrWcxQcM65juGVd8NXFB7HrPN4SEhe-ZPMPwRJvYBnZzliy7-3RRt9moEGMgZleLQcmAKsMKbVQPBfSMPn2olpxuvQnomOB1AP2DwTSelJbctlqfK-yrBFlYMLetEzQT_f4Wt9GPdfS2U_Ov-riFWgqW7vZ51lctz1G00)
+
+需要注意的是，我们实现KubekeyServer有三种方式:
+1. `kubekey serve`子命令
+   直接修改kubekey源码，添加`kubekey serve`的`subCommand`，以提供GRPC/HTTP服务(建议GRPC用于交互控制与实时日志传输)，该服务直接调用kubekey的相关库以实现原始kubekey命令的功能
+2. 开发通用、独立的`GRPC request -> command call`服务
+   开发GRPC服务，(暂时命名为`koca-grpc-command-server`)，用以实现以下功能：
+   - 将收到的GRPC请求转换为命令在操作系统中直接执行，需要约定我们的转换协议，不仅为了我们对接kubekey，以后可能也能帮助到其他项目
+   - 调用接口之前，需要获取token以防止匿名用户的危险操作
+   - 调用接口之后，将该命令的output通过流式返回
+3. 直接让koca服务调用原始kubekey命令
+
+三种方案的对比如表
+
+| \                       | kubekey serve子命令                                        | koca-grpc-command-server | 直接让koca服务调用原始kubekey命令 |
+| ----------------------- | ---------------------------------------------------------- | ------------------------ | --------------------------------- |
+| 是否需要修改kubekey源码 | √                                                          | x                        | x                                 |
+| 开发工作量              | ☆☆☆☆                                                       | ☆☆☆                      | ☆☆                                |
+| 服务耦合度              | ☆☆                                                         | ☆                        | ☆☆☆☆                              |
+| 代码维护复杂度          | ☆☆☆☆☆（如果社区不接收此feature，我们需要fork一份自行维护） | ☆☆                       | ☆☆☆                               |
+| 部署复杂度              | ☆☆                                                         | ☆☆☆                      | ☆☆                                |
+
+综上所述，三种方案各有优缺，需要跟我们工作安排与架构考虑进一步权衡
 
 [1]: https://github.com/kubesphere/kubekey#linux-distributions "kubekey"
 [2]: https://github.com/kubernetes-sigs/kubespray#supported-linux-distributions "kubespray"
