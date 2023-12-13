@@ -1,0 +1,43 @@
+@startmindmap design
+*[#GreenYellow] 集群管理演示
+
+**[#LightBlue] 通过主机自建K8s集群 
+***[#SkyBlue] 在基础资源中创建凭证、主机
+****_ 10.202.63.33
+****_ 10.202.63.35
+****_ 10.202.63.36
+***[#SkyBlue] 添加集群
+****_ 1. 选择33作为master1节点，35作为worker1节点，创建集群
+****_ 2. 回到集群列表查看集群、任务状态
+****_ 3. 点击状态、查看日志
+****_ 4. 集群安装完成、状态正常后，开始集群操作
+***[#SkyBlue] 集群操作
+****_ 1. 控制台查看集群资源
+****_ 2. 终端执行kubectl命令
+****_ 3. 进入集群详情，下载Kubeconfig并通过它执行命令(export KUBECONFIG=~/Documents/koca33-kubeconfig.yaml)，查看节点、任务
+****_ 4. 添加集群角色，成员，并为成员分配权限
+***[#SkyBlue] 集群扩/缩容
+****_ 1. 在节点列表，给该集群添加一个worker节点，即36节点作为worker2
+****_ 2. 安装完成后通过控制台确认节点数，变为3个
+****_ 3. 再删除worker1（35）节点
+****_ 4. 删除完成后确认节点数变为2个
+
+**[#LightYellow] 通过Kubeconfig导入集群
+***[#Yellow] 在集群列表，通过预先准备好的kubeconfig导入集群
+***[#Yellow] 集群操作
+****_ 集群、节点信息
+****_ 控制台、终端、kubeconfig
+****_ 成员、角色
+
+**[#Orange] 容器调度
+***[#Pink] 驱逐容器
+****_ 1. 创建一个deployment: kubectl create deployment nginx --image=nginx --replicas=1
+****_ 2. 观察容器调度到了哪个节点：kubectl  get pod -o wide
+****_ 3. 对容器所在节点点击“驱逐容器”， 观察该容器是否被调度到其他节点
+****_ 4. 对所有节点“驱逐容器”，容器状态变为“Pending“
+****_ 5. 对一个节点“允许调度”，容器调度回该节点
+
+**[#Gray] 删除集群
+***[#LightGray] 删除自建、导入的集群，有是否清理资源之分
+@endmindmap
+

@@ -1,0 +1,24 @@
+@startuml jar
+
+actor 用户 
+
+card 应用编排平台 {
+    database ChartMuseum #Pink
+    [控制台] #LightGreen
+}
+
+[制品服务] #GreenYellow
+
+cloud k8s集群 #SkyBlue {
+    [k8s资源对象]
+}
+
+用户 -right-> ChartMuseum: 编写并推送针对制品的通用charts
+
+控制台 <-up- ChartMuseum: 读取制品应用信息\n并渲染出表单
+用户 -right-> 控制台: 上传要部署的制品包\n(zip文件/jar/war包)
+控制台 -right-> 制品服务: 将制品转换为镜像
+
+控制台 -down-> k8s资源对象: 通过helm client 部署应用
+
+@enduml

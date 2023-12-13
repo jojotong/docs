@@ -1,0 +1,30 @@
+@startuml
+
+skinparam linetype polyline
+
+card 运维平台 #CadetBlue{
+    [集群]
+    [制品管理]
+    [服务管理]
+    [实例管理]
+    [监控告警]
+}
+
+集群 -[hidden]down-> 实例管理
+
+cloud 云管平台 #LightBlue {
+    [集群管理]
+    card 应用管理 #LightGreen {
+        [镜像管理]
+        [应用编排]
+        [应用部署]
+        [应用容器实例]
+    }
+}
+
+运维平台 -[hidden]right-> 云管平台
+
+集群管理 -left-> 集群: 同步集群信息
+服务管理 -right-> 应用编排: 调用接口
+应用容器实例 -left-> 实例管理: 同步实例信息
+@enduml

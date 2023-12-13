@@ -1,0 +1,31 @@
+@startuml task
+actor user
+participant cmp #LightYellow
+database mysql #Pink
+control k8s #LightSkyBlue
+
+autonumber 1 1 "<font color=red><b>主流程 "
+
+user -> cmp: 发起任务
+note left of cmp: 根据任务内容（集群/制品任务）\n任务操作（添加、删除、构建）\n 渲染出不同的k8s yaml
+cmp -> k8s: 创建一系列以job为核心的k8s资源
+note right of k8s: 这些k8s资源通过label的\ntask-id 与任务关联
+cmp -> mysql: 将任务内容、操作类型等信息存入数据库
+note left of mysql: 这里的任务信息\n不包括状态及日志
+note over k8s: 部分job的container中可能有回调，\n比如集群安装成功后，回调保存kubeconfig
+k8s --> cmp: job回调
+
+autonumber stop
+
+autonumber 1 1 "<font color=red><b>日志查看 "
+user -> cmp: 查看日志
+cmp -> mysql: 查询数据库中有无归档日志
+cmp -> k8s: 如果数据库日志还未归档，说明任务还没结束，则job 的pod日志
+
+autonumber stop
+
+autonumber 1 1 "<font color=red><b>任务同步goroutine "
+note over cmp: cmp 中运行一个watch k8s job的\ngoroutine，以做任务同步
+cmp -> k8s: 监听job状态变动
+cmp -> mysql: 将job状态写入数据库，若job执行完成，日志也需归档至数据库。
+cmp -> k8s: 遍历所有job，如果完成时间超过 retain-duration，则删除。

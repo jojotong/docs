@@ -1,0 +1,38 @@
+@startmindmap design
+*[#GreenYellow] 容器运维监控
+
+**[#LightBlue] 运维平台
+***[#SkyBlue] 集群管理
+****_ 集群导入
+****_ 集群列表
+***[#SkyBlue] 制品管理
+****_ 制作镜像
+***[#SkyBlue] 镜像管理
+****_ 仓库、镜像、artifacts、tag管理
+****_ 镜像上传
+***[#SkyBlue] 服务管理
+****_ 创建服务
+****_ 服务部署
+*****_ 部署至物理机/虚拟机
+*****_ 部署至容器集群
+*** 监控告警
+
+**[#LightYellow] 通过Kubeconfig导入集群
+***[#Yellow] 在集群列表，通过预先准备好的kubeconfig导入集群
+***[#Yellow] 集群操作
+****_ 集群、节点信息
+****_ 控制台、终端、kubeconfig
+****_ 成员、角色
+
+**[#Orange] 容器调度
+***[#Pink] 驱逐容器
+****_ 1. 创建一个deployment: kubectl create deployment nginx --image=nginx --replicas=1
+****_ 2. 观察容器调度到了哪个节点：kubectl  get pod -o wide
+****_ 3. 对容器所在节点点击“驱逐容器”， 观察该容器是否被调度到其他节点
+****_ 4. 对所有节点“驱逐容器”，容器状态变为“Pending“
+****_ 5. 对一个节点“允许调度”，容器调度回该节点
+
+**[#Gray] 删除集群
+***[#LightGray] 删除自建、导入的集群，有是否清理资源之分
+@endmindmap
+
