@@ -8,3 +8,4 @@
 - [filebeat tail_files不生效](issues/filebeat-tail_files.md)
 - [vmware虚拟机内存balloon](issues/vmware-balloon.md)
 - [windows terminal ssh之后无法滚动](issues/windows-terminal-ssh.md)
+- [prometheus相关](issues/prometheus.md)
