@@ -9,3 +9,4 @@
 - [vmware虚拟机内存balloon](issues/vmware-balloon.md)
 - [windows terminal ssh之后无法滚动](issues/windows-terminal-ssh.md)
 - [prometheus相关](issues/prometheus.md)
+- [vscode go语法高亮变化](issues/vscode-go-syntax-highlight.md)
