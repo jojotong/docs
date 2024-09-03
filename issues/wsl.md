@@ -21,9 +21,18 @@ ip6tables v1.8.10 (nf_tables):  CHAIN_ADD failed (No such file or directory): ch
  (exit status 4))
 
  解决：
- ```
+```bash
 sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 ```
 
  https://github.com/microsoft/WSL/issues/6655#issuecomment-1142933322
+
+ # wsl 通过外部机器ssh
+
+在powershell 中添加端口转发
+
+```bash
+netsh interface portproxy delete v4tov4   listenaddress=192.168.125.183   listenport=9022
+netsh interface portproxy add v4tov4   listenaddress=192.168.125.183   listenport=9022  connectaddress=172.21.110.5  connectport=22
+```
