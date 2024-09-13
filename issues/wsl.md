@@ -36,3 +36,7 @@ sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 netsh interface portproxy delete v4tov4   listenaddress=192.168.125.183   listenport=9022
 netsh interface portproxy add v4tov4   listenaddress=192.168.125.183   listenport=9022  connectaddress=172.21.110.5  connectport=22
 ```
+
+# wsl 磁盘扩容
+
+<https://learn.microsoft.com/zh-cn/windows/wsl/disk-space#how-to-check-your-available-disk-space>
