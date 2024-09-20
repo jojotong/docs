@@ -41,4 +41,22 @@ commit: COMMIT_NO
 spec: 1.0.0-rc2-dev
 
 
+
+
+
+
+
+
+
+
+[root@minion-03 ~]# nvidia-container-runtime -v
+runc version 1.0.0-rc2
+commit: COMMIT_NO
+spec: 1.0.0-rc2-dev
+[root@minion-03 ~]# /usr/bin/nvidia-container-runtime -v
+runc version 1.0.0-rc2
+commit: COMMIT_NO
+spec: 1.0.0-rc2-dev
+
+
    
